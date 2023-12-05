@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "googlekeep",
+    "slug": "googlekeep",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "googlekeep"
+}
