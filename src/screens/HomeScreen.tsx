@@ -106,6 +106,18 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
+    backgroundColor: "#fff",
+  },
+  searchInput: {
+    height: 40,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    backgroundColor: "#f9f9f9",
+    color: "#333",
   },
 });
 
