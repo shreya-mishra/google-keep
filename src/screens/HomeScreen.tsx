@@ -4,10 +4,13 @@ import { FloatingAction } from "react-native-floating-action";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import NoteList from "../components/NoteList";
 import CreateNote from "../components/CreateNote";
+import EditNote from "../components/EditNote";
 
 const HomeScreen = () => {
   const [notes, setNotes] = useState([]);
   const [isAddNoteFormVisible, setAddNoteFormVisible] = useState(false);
+  const [isEditNoteFormVisible, setEditNoteFormVisible] = useState(false);
+  const [noteToEdit, setNoteToEdit] = useState(null);
 
   const actions = [
     {
@@ -24,17 +27,22 @@ const HomeScreen = () => {
     setAddNoteFormVisible(false);
   };
 
-  const handleEditNote = (editedNote) => {
-    console.log("editedNoted", editedNote);
+  const handleEditNote = (note) => {
+    setNoteToEdit(note);
+    setEditNoteFormVisible(true);
+  };
+
+  const handleSaveEditNote = (editedNote) => {
     setNotes((prevNotes) =>
       prevNotes.map((note) => (note.id === editedNote.id ? editedNote : note))
     );
+    setEditNoteFormVisible(false);
+    setNoteToEdit(null);
   };
 
   const handleDeleteNote = (noteId) => {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
   };
-
   return (
     <View style={styles.container}>
       <CreateNote
@@ -46,6 +54,12 @@ const HomeScreen = () => {
         notes={notes}
         onDelete={handleDeleteNote}
         onEdit={handleEditNote}
+      />
+      <EditNote
+        visible={isEditNoteFormVisible}
+        onClose={() => setEditNoteFormVisible(false)}
+        onSave={handleSaveEditNote}
+        noteToEdit={noteToEdit}
       />
       <FloatingAction
         actions={actions}
