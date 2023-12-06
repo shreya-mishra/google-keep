@@ -1,16 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import NoteList from "../components/NoteList";
 import CreateNote from "../components/CreateNote";
 import EditNote from "../components/EditNote";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
   const [notes, setNotes] = useState([]);
   const [isAddNoteFormVisible, setAddNoteFormVisible] = useState(false);
   const [isEditNoteFormVisible, setEditNoteFormVisible] = useState(false);
   const [noteToEdit, setNoteToEdit] = useState(null);
+
+  useEffect(() => {
+    // Load notes from local storage when component mounts
+    loadNotes();
+  }, []);
+
+  const saveNotes = async (notesToSave) => {
+    try {
+      const jsonNotes = JSON.stringify(notesToSave);
+      await AsyncStorage.setItem("notes", jsonNotes);
+    } catch (error) {
+      console.error("Error saving notes to AsyncStorage:", error);
+    }
+  };
+
+  const loadNotes = async () => {
+    try {
+      const jsonNotes = await AsyncStorage.getItem("notes");
+      if (jsonNotes) {
+        const loadedNotes = JSON.parse(jsonNotes);
+        setNotes(loadedNotes);
+      }
+    } catch (error) {
+      console.error("Error loading notes from AsyncStorage:", error);
+    }
+  };
 
   const actions = [
     {
@@ -23,7 +50,9 @@ const HomeScreen = () => {
 
   const handleCreateNote = (note) => {
     const newNote = { ...note, id: Math.random().toString() };
-    setNotes([newNote, ...notes]);
+    const updatedNotes = [newNote, ...notes];
+    setNotes(updatedNotes);
+    saveNotes(updatedNotes);
     setAddNoteFormVisible(false);
   };
 
@@ -33,16 +62,21 @@ const HomeScreen = () => {
   };
 
   const handleSaveEditNote = (editedNote) => {
-    setNotes((prevNotes) =>
-      prevNotes.map((note) => (note.id === editedNote.id ? editedNote : note))
+    const updatedNotes = notes.map((note) =>
+      note.id === editedNote.id ? editedNote : note
     );
+    setNotes(updatedNotes);
+    saveNotes(updatedNotes);
     setEditNoteFormVisible(false);
     setNoteToEdit(null);
   };
 
   const handleDeleteNote = (noteId) => {
-    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
+    const updatedNotes = notes.filter((note) => note.id !== noteId);
+    setNotes(updatedNotes);
+    saveNotes(updatedNotes);
   };
+
   return (
     <View style={styles.container}>
       <CreateNote
