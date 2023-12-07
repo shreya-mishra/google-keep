@@ -1,4 +1,4 @@
-# React Native Google Keep Clone
+[Screencast from 12-07-2023 12:47:42 PM.webm](https://github.com/shreya-mishra/google-keep/assets/61110378/14783650-b60c-45ef-8db2-a15666629a71)# React Native Google Keep Clone
 
 This project is a simplified version of Google Keep, a note-taking application, built using React Native.
 
@@ -42,10 +42,14 @@ This project is a simplified version of Google Keep, a note-taking application, 
    - Implemented a search functionality to filter notes based on their titles or content.
 
 ## Screenshots
-
-![Alt text](<WhatsApp Image 2023-12-07 at 12.44.51 PM (2).jpeg>) ![Alt text](<WhatsApp Image 2023-12-07 at 12.44.51 PM (1).jpeg>) ![Alt text](<WhatsApp Image 2023-12-07 at 12.44.51 PM.jpeg>) ![Alt text](<WhatsApp Image 2023-12-07 at 12.44.52 PM.jpeg>)
+![WhatsApp Image 2023-12-07 at 12 44 52 PM](https://github.com/shreya-mishra/google-keep/assets/61110378/bb184008-bef8-431e-a549-02e13d9f6eea)
+![WhatsApp Image 2023-12-07 at 12 44 51 PM](https://github.com/shreya-mishra/google-keep/assets/61110378/50fb2888-c61b-4112-bcfc-4e84805e76c6)
+![WhatsApp Image 2023-12-07 at 12 44 51 PM (1)](https://github.com/shreya-mishra/google-keep/assets/61110378/1946f03f-5443-4461-9e58-7846f3e991f9)
+![WhatsApp Image 2023-12-07 at 12 44 51 PM (2)](https://github.com/shreya-mishra/google-keep/assets/61110378/8a313bea-1ccd-4d06-a7e7-8ee650aa15ab)
 
 ## Video
+
+[Uploading Screencast from 12-07-2023 12:47:42 PM.webm…]()
 
 ## Tech Stack
 
