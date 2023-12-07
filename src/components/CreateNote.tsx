@@ -25,9 +25,8 @@ const CreateNote = ({ visible, onClose, onCreate }) => {
   const isCreateButtonDisabled = !title || !content;
 
   const handleTouchablePress = () => {
-    // Close the modal when tapping outside the form
     if (visible) {
-      Keyboard.dismiss(); // Dismiss the keyboard if open
+      Keyboard.dismiss();
       onClose();
     }
   };

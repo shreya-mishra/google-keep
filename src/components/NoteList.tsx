@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, FlatList, TextInput, StyleSheet } from "react-native";
 import NoteItem from "./NoteItem";
 
 const NoteList = ({ notes, onDelete, onEdit }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredNotes, setFilteredNotes] = useState(notes);
+
+  useEffect(() => {
+    handleSearch(searchQuery);
+  }, [notes, searchQuery]);
 
   const handleSearch = (query) => {
     const filtered = notes.filter(
