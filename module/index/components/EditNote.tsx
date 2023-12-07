@@ -7,6 +7,7 @@ import {
   Modal,
   StyleSheet,
   TouchableOpacity,
+  Text,
 } from "react-native";
 
 const EditNote = ({ visible, onClose, onSave, noteToEdit }: editNoteType) => {
@@ -45,6 +46,8 @@ const EditNote = ({ visible, onClose, onSave, noteToEdit }: editNoteType) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
+          <Text style={styles.title}>Edit your note</Text>
+
           <TouchableOpacity
             style={[
               styles.colorPickerButton,
@@ -52,6 +55,7 @@ const EditNote = ({ visible, onClose, onSave, noteToEdit }: editNoteType) => {
             ]}
             onPress={() => setColorPickerVisible(true)}
           />
+
           <TextInput
             style={styles.input}
             placeholder="Title"
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
   colorPickerButton: {
     height: 40,
     borderRadius: 5,
-    marginBottom: 10,
+    // marginBottom: 10,
   },
   input: {
     borderBottomWidth: 1,
@@ -102,6 +106,10 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
   },
 });
 

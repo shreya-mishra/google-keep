@@ -6,7 +6,7 @@ import NoteList from "../components/NoteList";
 import CreateNote from "../components/CreateNote";
 import EditNote from "../components/EditNote";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { v4 as uuidv4 } from "uuid";
+import uuid from "react-native-uuid";
 
 const HomeScreen = () => {
   const [notes, setNotes] = useState<noteType[]>([]);
@@ -50,7 +50,7 @@ const HomeScreen = () => {
   ];
 
   const handleCreateNote = (note: noteType) => {
-    const newNote = { ...note, id: uuidv4() };
+    const newNote = { ...note, id: uuid.v4() };
     const updatedNotes: noteType[] = [newNote, ...notes];
     setNotes(updatedNotes);
     saveNotes(updatedNotes);

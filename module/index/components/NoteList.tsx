@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList, TextInput, StyleSheet } from "react-native";
+import { View, FlatList, TextInput, StyleSheet, Text } from "react-native";
 import NoteItem from "./NoteItem";
 
 const NoteList = ({ notes, onDelete, onEdit }: noteListType) => {
@@ -24,12 +24,16 @@ const NoteList = ({ notes, onDelete, onEdit }: noteListType) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search Notes..."
-        value={searchQuery}
-        onChangeText={handleSearch}
-      />
+      {filteredNotes && filteredNotes.length > 0 ? (
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search Notes..."
+          value={searchQuery}
+          onChangeText={handleSearch}
+        />
+      ) : (
+        <Text style={styles.title}>No notes found!</Text>
+      )}
       <FlatList
         data={filteredNotes}
         keyExtractor={(item) => item.id}
@@ -56,6 +60,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "#f9f9f9",
     color: "#333",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
   },
 });
 
