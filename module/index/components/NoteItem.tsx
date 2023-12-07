@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 import ColorPickerModal from "./ColorPickerModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const NoteItem = ({ note, onDelete, onEdit }) => {
+const NoteItem = ({ note, onDelete, onEdit }: noteItemType) => {
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [isColorPickerVisible, setColorPickerVisible] = useState(false);
 
@@ -64,9 +64,7 @@ const NoteItem = ({ note, onDelete, onEdit }) => {
         <ColorPickerModal
           visible={isColorPickerVisible}
           onClose={() => setColorPickerVisible(false)}
-          onSelectColor={(color: string) => {
-            handleColorSelect(color);
-          }}
+          onSelectColor={(color: string) => handleColorSelect(color)}
         />
       </View>
     </View>

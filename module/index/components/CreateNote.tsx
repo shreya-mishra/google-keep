@@ -9,7 +9,7 @@ import {
   Keyboard,
 } from "react-native";
 
-const CreateNote = ({ visible, onClose, onCreate }) => {
+const CreateNote = ({ visible, onClose, onCreate }: createNoteType) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 

@@ -3,10 +3,14 @@ import React, { useState } from "react";
 import { View, TouchableOpacity, Modal, StyleSheet, Text } from "react-native";
 import ColorWheel from "react-native-wheel-color-picker";
 
-const ColorPickerModal = ({ visible, onClose, onSelectColor }) => {
-  const [selectedColor, setSelectedColor] = useState("#000000");
+const ColorPickerModal = ({
+  visible,
+  onClose,
+  onSelectColor,
+}: colorPickerModalType) => {
+  const [selectedColor, setSelectedColor] = useState<string>("#000000");
 
-  const handleColorChange = (color) => {
+  const handleColorChange = (color: string) => {
     setSelectedColor(color);
   };
 

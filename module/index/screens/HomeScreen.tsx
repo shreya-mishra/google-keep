@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { View, StyleSheet } from "react-native";
 import { FloatingAction } from "react-native-floating-action";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -6,19 +6,20 @@ import NoteList from "../components/NoteList";
 import CreateNote from "../components/CreateNote";
 import EditNote from "../components/EditNote";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { v4 as uuidv4 } from "uuid";
 
 const HomeScreen = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState<noteType[]>([]);
   const [isAddNoteFormVisible, setAddNoteFormVisible] = useState(false);
   const [isEditNoteFormVisible, setEditNoteFormVisible] = useState(false);
-  const [noteToEdit, setNoteToEdit] = useState(null);
+  const [noteToEdit, setNoteToEdit] = useState<noteType | null>(null);
 
   useEffect(() => {
     // Load notes from local storage when component mounts
     loadNotes();
   }, []);
 
-  const saveNotes = async (notesToSave) => {
+  const saveNotes = async (notesToSave: noteType[]) => {
     try {
       const jsonNotes = JSON.stringify(notesToSave);
       await AsyncStorage.setItem("notes", jsonNotes);
@@ -48,21 +49,21 @@ const HomeScreen = () => {
     },
   ];
 
-  const handleCreateNote = (note) => {
-    const newNote = { ...note, id: Math.random().toString() };
-    const updatedNotes = [newNote, ...notes];
+  const handleCreateNote = (note: noteType) => {
+    const newNote = { ...note, id: uuidv4() };
+    const updatedNotes: noteType[] = [newNote, ...notes];
     setNotes(updatedNotes);
     saveNotes(updatedNotes);
     setAddNoteFormVisible(false);
   };
 
-  const handleEditNote = (note) => {
+  const handleEditNote = (note: noteType) => {
     setNoteToEdit(note);
     setEditNoteFormVisible(true);
   };
 
-  const handleSaveEditNote = (editedNote) => {
-    const updatedNotes = notes.map((note) =>
+  const handleSaveEditNote = (editedNote: noteType) => {
+    const updatedNotes: updatedNotesType = notes.map((note: noteType) =>
       note.id === editedNote.id ? editedNote : note
     );
     setNotes(updatedNotes);
@@ -71,8 +72,10 @@ const HomeScreen = () => {
     setNoteToEdit(null);
   };
 
-  const handleDeleteNote = (noteId) => {
-    const updatedNotes = notes.filter((note) => note.id !== noteId);
+  const handleDeleteNote = (noteId: string) => {
+    const updatedNotes: updatedNotesType = notes.filter(
+      (note: noteType) => note.id !== noteId
+    );
     setNotes(updatedNotes);
     saveNotes(updatedNotes);
   };

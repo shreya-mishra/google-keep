@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const EditNote = ({ visible, onClose, onSave, noteToEdit }) => {
+const EditNote = ({ visible, onClose, onSave, noteToEdit }: editNoteType) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedColor, setSelectedColor] = useState("#ffffff");
@@ -23,7 +23,13 @@ const EditNote = ({ visible, onClose, onSave, noteToEdit }) => {
 
   const handleSave = () => {
     if (title && content) {
-      onSave({ ...noteToEdit, title, content, color: selectedColor });
+      onSave({
+        ...noteToEdit,
+        title,
+        content,
+        color: selectedColor,
+        noteToEdit: null,
+      });
       setTitle("");
       setContent("");
       onClose();

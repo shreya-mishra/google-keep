@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import { View, FlatList, TextInput, StyleSheet } from "react-native";
 import NoteItem from "./NoteItem";
 
-const NoteList = ({ notes, onDelete, onEdit }) => {
+const NoteList = ({ notes, onDelete, onEdit }: noteListType) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredNotes, setFilteredNotes] = useState(notes);
+  const [filteredNotes, setFilteredNotes] = useState<
+    noteType[] | undefined | null
+  >(notes);
 
   useEffect(() => {
     handleSearch(searchQuery);
   }, [notes, searchQuery]);
 
-  const handleSearch = (query) => {
-    const filtered = notes.filter(
-      (note) =>
+  const handleSearch = (query: string) => {
+    const filtered = notes?.filter(
+      (note: noteType) =>
         note.title.toLowerCase().includes(query.toLowerCase()) ||
         note.content.toLowerCase().includes(query.toLowerCase())
     );
