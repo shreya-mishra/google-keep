@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import NoteItem from "./NoteItem";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const NoteList = ({ notes, onDelete, onEdit }: noteListType) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,7 +48,7 @@ const NoteList = ({ notes, onDelete, onEdit }: noteListType) => {
             style={styles.clearButton}
             onPress={clearSearch}
           >
-            <Text style={styles.x}>X</Text>
+            <Icon name="close" size={24} color="black" />
           </TouchableWithoutFeedback>
         ) : null}
       </View>
