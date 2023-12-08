@@ -54,6 +54,9 @@ This project is a simplified version of Google Keep, a note-taking application, 
 ## APK
 https://drive.google.com/file/d/1v7Al2xokmtW0noj_sQhxdGPgbyqhgPZs/view?usp=sharing
 
+## Updated APK
+https://drive.google.com/file/d/13cKn1yMnJt4qNJ_2NNzUWGHS-HvzahEK/view?usp=sharing
+
 ## Tech Stack
 
 - React Native
