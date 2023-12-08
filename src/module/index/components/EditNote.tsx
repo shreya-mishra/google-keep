@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const EditNote = ({ visible, onClose, onSave, noteToEdit }: editNoteType) => {
   const [title, setTitle] = useState("");
@@ -46,7 +47,12 @@ const EditNote = ({ visible, onClose, onSave, noteToEdit }: editNoteType) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.title}>Edit your note</Text>
+          <View style={styles.header}>
+            <Text style={styles.title}>Edit your note</Text>
+            <TouchableOpacity onPress={onClose}>
+              <Icon name="close" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
 
           <TouchableOpacity
             style={[
@@ -63,11 +69,14 @@ const EditNote = ({ visible, onClose, onSave, noteToEdit }: editNoteType) => {
             onChangeText={(text) => setTitle(text)}
           />
           <TextInput
-            style={[styles.input, styles.fullWidthInput]}
-            placeholder="Content"
+            style={styles.textInput}
+            multiline
+            numberOfLines={4}
+            placeholder="Description"
             value={content}
             onChangeText={(text) => setContent(text)}
           />
+
           <View style={styles.buttonContainer}>
             <Button title="Save" onPress={handleSave} color="#007BFF" />
           </View>
@@ -97,7 +106,11 @@ const styles = StyleSheet.create({
     // marginBottom: 10,
   },
   input: {
-    borderBottomWidth: 1,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    padding: 10,
+    textAlignVertical: "top",
+    borderRadius: 8,
     marginBottom: 10,
     fontSize: 16,
   },
@@ -110,6 +123,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 16,
+    textAlignVertical: "top",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 

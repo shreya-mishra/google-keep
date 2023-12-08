@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Text, TouchableOpacity } from "react-native";
 import {
   View,
   TextInput,
@@ -8,6 +9,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 const CreateNote = ({ visible, onClose, onCreate }: createNoteType) => {
   const [title, setTitle] = useState("");
@@ -41,6 +43,13 @@ const CreateNote = ({ visible, onClose, onCreate }: createNoteType) => {
       <TouchableWithoutFeedback onPress={handleTouchablePress}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
+            <View style={styles.header}>
+              <Text style={styles.title}>Add Note</Text>
+              <TouchableOpacity onPress={onClose}>
+                <Icon name="close" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+
             <TextInput
               style={styles.input}
               placeholder="Title"
@@ -48,11 +57,14 @@ const CreateNote = ({ visible, onClose, onCreate }: createNoteType) => {
               onChangeText={(text) => setTitle(text)}
             />
             <TextInput
-              style={[styles.input, styles.fullWidthInput]}
-              placeholder="Content"
+              style={styles.textInput}
+              multiline
+              numberOfLines={4}
+              placeholder="Description"
               value={content}
               onChangeText={(text) => setContent(text)}
             />
+
             <View style={styles.buttonContainer}>
               <Button
                 title="Create"
@@ -83,7 +95,11 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   input: {
-    borderBottomWidth: 1,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    padding: 10,
+    textAlignVertical: "top",
+    borderRadius: 8,
     marginBottom: 10,
     fontSize: 16,
   },
@@ -92,6 +108,24 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
+    padding: 10,
+    fontSize: 16,
+    textAlignVertical: "top",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
+    alignItems: "center",
   },
 });
 
