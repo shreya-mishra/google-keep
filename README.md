@@ -52,10 +52,10 @@ This project is a simplified version of Google Keep, a note-taking application, 
 [Uploading Screencast from 12-07-2023 12:47:42 PM.webm…]()
 
 ## APK
-https://drive.google.com/file/d/1v7Al2xokmtW0noj_sQhxdGPgbyqhgPZs/view?usp=sharing
+[download from here](https://drive.google.com/file/d/1v7Al2xokmtW0noj_sQhxdGPgbyqhgPZs/view?usp=sharing)
 
 ## Updated APK
-https://drive.google.com/file/d/13cKn1yMnJt4qNJ_2NNzUWGHS-HvzahEK/view?usp=sharing
+[APK](https://drive.google.com/file/d/13cKn1yMnJt4qNJ_2NNzUWGHS-HvzahEK/view?usp=sharing)
 
 ## Tech Stack
 
@@ -63,8 +63,7 @@ https://drive.google.com/file/d/13cKn1yMnJt4qNJ_2NNzUWGHS-HvzahEK/view?usp=shari
 - TypeScript
 - Local Storage for data persistence
 - React Navigation (for navigation)
-- @react-native-community/viewpager (for view pager)
-
+- 
 ## Getting Started
 
 To run this project locally, follow these steps:
@@ -74,3 +73,5 @@ To run this project locally, follow these steps:
    ```bash
    git clone https://github.com/your-username/react-native-google-keep-clone.git
    cd react-native-google-keep-clone
+   yarn
+   yarn react-native run-android
