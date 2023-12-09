@@ -1,4 +1,4 @@
-[Screencast from 12-07-2023 12:47:42 PM.webm](https://github.com/shreya-mishra/google-keep/assets/61110378/14783650-b60c-45ef-8db2-a15666629a71)# React Native Google Keep Clone
+# React Native Google Keep Clone
 
 This project is a simplified version of Google Keep, a note-taking application, built using React Native.
 
