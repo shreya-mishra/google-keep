@@ -1,4 +1,3 @@
-// NoteItem.js
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
@@ -8,6 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const NoteItem = ({ note, onDelete, onEdit }: noteItemType) => {
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [isColorPickerVisible, setColorPickerVisible] = useState(false);
+  const [showFullContent, setShowFullContent] = useState(false);
 
   useEffect(() => {
     // Load color from local storage when component mounts
@@ -39,11 +39,36 @@ const NoteItem = ({ note, onDelete, onEdit }: noteItemType) => {
     setColorPickerVisible(false);
   };
 
+  const renderContent = () => {
+    if (showFullContent) {
+      return (
+        <>
+          <Text style={styles.fullContentTitle}>{note.title}</Text>
+          <Text style={styles.fullContent}>{note.content}</Text>
+          <TouchableOpacity onPress={() => setShowFullContent(false)}>
+            <Text style={styles.readMore}>Read Less</Text>
+          </TouchableOpacity>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Text style={styles.content} numberOfLines={3}>
+            {note.content}
+          </Text>
+          <TouchableOpacity onPress={() => setShowFullContent(true)}>
+            <Text style={styles.readMore}>Read More</Text>
+          </TouchableOpacity>
+        </>
+      );
+    }
+  };
+
   return (
     <View style={[styles.card, { backgroundColor: selectedColor }]}>
       <TouchableOpacity onPress={() => onEdit(note)}>
         <Text style={styles.title}>{note.title}</Text>
-        <Text style={styles.content}>{note.content}</Text>
+        {renderContent()}
       </TouchableOpacity>
       <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => onEdit(note)}>
@@ -91,12 +116,24 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 16,
   },
+  readMore: {
+    color: "blue",
+    marginTop: 5,
+  },
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "flex-end",
   },
   icon: {
     marginLeft: 15,
+  },
+  fullContentTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  fullContent: {
+    fontSize: 18,
   },
 });
 
